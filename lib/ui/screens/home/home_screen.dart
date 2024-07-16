@@ -13,155 +13,162 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-        body: SafeArea(
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              // app bar
-              appbar(),
-              SizedBox(height: height * 0.02),
-              //second row
-              secondRow(height, width),
-              SizedBox(height: height * 0.02),
-              //subject Text
-              Container(
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Subjects"),
-                    Text(
-                      "View All",
-                      style: TextStyle(color: Color(0xff3843FF)),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: height * 0.02),
-              //Recent Topic
-              subjectlist(height, width),
-
-              SizedBox(height: height * 0.02),
-
-              //Recent Topics
-              Container(
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Recent Topics"),
-                    Text(
-                      "View All",
-                      style: TextStyle(color: Color(0xff3843FF)),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: height * 0.02),
-              //Recent topic conatainer
-              recent_topic(height, width),
-              SizedBox(height: height * 0.02),
-
-              // Mock Exams text
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Mock Exams"),
-                    Text(
-                      "View All",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: height * 0.02),
-              //Mock Exams text countainer
-              mock_exam(height, width),
-              SizedBox(height: height * 0.02),
-
-              //Your Journey text
-              Container(
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Your Journey"),
-                    Text(
-                      "View All",
-                      style: TextStyle(color: Color(0xff3843FF)),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: height * 0.1 + 35,
-                width: width * 0.9,
-                child: ListView.separated(
-                  itemCount: yourjourney.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: height * 0.1 + 35,
-                      width: width * 0.5,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(10)),
-                        border: Border.all(color: const Color(0xffEAECF0)),
+    return Scaffold(body: Builder(builder: (context) {
+      return SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                // app bar
+                appbar(),
+                SizedBox(height: height * 0.02),
+                //second row
+                secondRow(height, width),
+                SizedBox(height: height * 0.02),
+                //subject Text
+                Container(
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Subjects"),
+                      Text(
+                        "View All",
+                        style: TextStyle(color: Color(0xff3843FF)),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(yourjourney[index]["image"].toString()),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    "assets/png/Folder.png",
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: width * 0.03,
-                                ),
-                                Text(
-                                  yourjourney[index]["title"].toString(),
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: width * 0.04,
-                    );
-                  },
+                    ],
+                  ),
                 ),
-              )
-            ],
+                SizedBox(height: height * 0.02),
+                //Recent Topic
+                subjectlist(height, width),
+
+                SizedBox(height: height * 0.02),
+
+                //Recent Topics
+                Container(
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Recent Topics"),
+                      Text(
+                        "View All",
+                        style: TextStyle(color: Color(0xff3843FF)),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: height * 0.02),
+                //Recent topic conatainer
+                recent_topic(height, width),
+                SizedBox(height: height * 0.02),
+
+                // Mock Exams text
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Mock Exams"),
+                      Text(
+                        "View All",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: height * 0.02),
+                //Mock Exams text countainer
+                mock_exam(height, width),
+                SizedBox(height: height * 0.02),
+
+                //Your Journey text
+                Container(
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Your Journey"),
+                      Text(
+                        "View All",
+                        style: TextStyle(color: Color(0xff3843FF)),
+                      ),
+                    ],
+                  ),
+                ),
+                yourJourney(height, width)
+              ],
+            ),
           ),
         ),
+      );
+    }));
+  }
+
+  SizedBox yourJourney(double height, double width) {
+    return SizedBox(
+      height: height * 0.1 + 41,
+      width: width * 0.9,
+      child: ListView.separated(
+        itemCount: yourjourney.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Container(
+            height: height * 0.1 + 41,
+            width: width * 0.5,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              border: Border.all(color: const Color(0xffEAECF0)),
+            ),
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: SizedBox(
+                    height: height * 0.10,
+                    width: width * 0.5,
+                    child: Image.asset(
+                      yourjourney[index]["image"].toString(),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "assets/png/Folder.png",
+                      ),
+                      SizedBox(
+                        width: width * 0.03,
+                      ),
+                      Text(
+                        yourjourney[index]["title"].toString(),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return SizedBox(
+            width: width * 0.04,
+          );
+        },
       ),
-    ));
+    );
   }
 
   SizedBox mock_exam(double height, double width) {
     return SizedBox(
-      height: height * 0.1 + 35,
+      height: height * 0.1 + 41,
       width: width * 0.9,
       child: ListView.separated(
         itemCount: mockexam.length,
@@ -222,7 +229,7 @@ class HomeScreen extends StatelessWidget {
 
   SizedBox recent_topic(double height, double width) {
     return SizedBox(
-      height: height * 0.1 + 20,
+      height: height * 0.1 + 24,
       width: width * 0.9,
       child: ListView.separated(
         itemCount: recenttopic.length,
@@ -231,7 +238,7 @@ class HomeScreen extends StatelessWidget {
           int color = int.parse(recenttopic[index]["color"]!);
 
           return Container(
-            height: height * 0.1 + 10,
+            height: height * 0.1 + 24,
             width: width * 0.4 - 25,
             decoration: BoxDecoration(
               color: Color(color),
@@ -264,7 +271,7 @@ class HomeScreen extends StatelessWidget {
 
   SizedBox subjectlist(double height, double width) {
     return SizedBox(
-      height: height * 0.1 + 20,
+      height: height * 0.1 + 30,
       width: width * 0.9,
       child: ListView.separated(
         itemCount: subjecthome.length,
@@ -272,7 +279,7 @@ class HomeScreen extends StatelessWidget {
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return Container(
-            height: height * 0.1 + 10,
+            height: height * 0.1 + 30,
             width: width * 0.4 - 25,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -311,7 +318,6 @@ class HomeScreen extends StatelessWidget {
           decoration: const BoxDecoration(),
           child: Image.asset(
             "assets/png/Base.png",
-            fit: BoxFit.fitWidth,
           ),
         ),
         SizedBox(
@@ -323,7 +329,7 @@ class HomeScreen extends StatelessWidget {
             const Text("Kara Jagne"),
             Image.asset(
               "assets/png/Status_Badge_home.png",
-              fit: BoxFit.fitWidth,
+              fit: BoxFit.cover,
             ),
           ],
         )

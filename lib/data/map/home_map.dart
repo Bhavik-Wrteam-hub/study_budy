@@ -28,6 +28,8 @@ List<Map<String, String>> mockexam = [
 ];
 
 List<Map<String, String>> yourjourney = [
-  {"title": "Study Planner", "image": "assets/png/yourjourney_first.png"},
+  {"title": "Study Planner", "image": "assets/png/yourjourney_second.png"},
   {"title": "Statistics ", "image": "assets/png/yourjourney_second.png"},
 ];
+
+

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_budy/ui/screens/home/book_screen.dart';
 import 'package:study_budy/ui/screens/home/home_screen.dart';
+import 'package:study_budy/ui/screens/home/study_planer/timing_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomePage> {
           Center(
             child: BookScreen(),
           ),
-          Center(child: Text("Study Planner")),
+          Center(child: TimingScreen()),
           Center(child: Text("Menu")),
         ],
       ),
@@ -34,72 +35,77 @@ class _HomeScreenState extends State<HomePage> {
           child: Image.asset("assets/png/messages icon.png"),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        onTap: (value) {
-          setState(() {
-            pageController.jumpToPage(value);
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "home",
-            backgroundColor: Colors.amber,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_outlined),
-            label: "Books",
-            backgroundColor: Colors.amber,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_outlined),
-            label: "Study Planner",
-            backgroundColor: Colors.amber,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: "Menu",
-            backgroundColor: Colors.amber,
-          )
-        ],
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 5.0,
+        color: Theme.of(context).colorScheme.primary,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      pageController.jumpToPage(0);
+                    },
+                    child: Image.asset("assets/png/home_bottom.png")),
+                Text(
+                  "Home",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      pageController.jumpToPage(1);
+                    },
+                    child: Image.asset("assets/png/Articles_bottom.png")),
+                Text(
+                  "Books",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      pageController.jumpToPage(2);
+                    },
+                    child: Image.asset("assets/png/Search_bottom.png")),
+                Text(
+                  "Study Planner",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      pageController.jumpToPage(3);
+                    },
+                    child: Image.asset("assets/png/Menu_bottom.png")),
+                Text(
+                  "Menu",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
-
-      // bottomNavigationBar: BottomAppBar(
-      //   shape: const CircularNotchedRectangle(),
-      //   notchMargin: 5.0,
-      //   color: Theme.of(context).colorScheme.primary,
-      //   child: Row(
-      //     mainAxisSize: MainAxisSize.max,
-      //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //     children: <Widget>[
-      //       IconButton(
-      //         icon: const Icon(Icons.home),
-      //         onPressed: () {
-      //           setState(() {});
-      //         },
-      //       ),
-      //       IconButton(
-      //         icon: const Icon(Icons.search),
-      //         onPressed: () {
-      //           setState(() {});
-      //         },
-      //       ),
-      //       IconButton(
-      //         icon: const Icon(Icons.favorite_border_outlined),
-      //         onPressed: () {
-      //           setState(() {});
-      //         },
-      //       ),
-      //       IconButton(
-      //         icon: const Icon(Icons.account_circle_outlined),
-      //         onPressed: () {
-      //           setState(() {});
-      //         },
-      //       )
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

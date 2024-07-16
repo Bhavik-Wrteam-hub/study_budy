@@ -164,47 +164,49 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.04,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        pageController.nextPage(
-                          duration: const Duration(milliseconds: 1000),
-                          curve: Curves.easeIn,
-                        );
-                        _nextQuestion();
+                    if (question[index]["option3"] != null)
+                      GestureDetector(
+                        onTap: () {
+                          pageController.nextPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn,
+                          );
+                          _nextQuestion();
 
-                        print("this is the index $currentQuestionIndex");
-                      },
-                      child: Text(
-                        question[index]["option3"].toString(),
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff45536D),
+                          print("this is the index $currentQuestionIndex");
+                        },
+                        child: Text(
+                          question[index]["option3"].toString(),
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff45536D),
+                          ),
                         ),
                       ),
-                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.04,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        pageController.nextPage(
-                          duration: const Duration(milliseconds: 1000),
-                          curve: Curves.easeIn,
-                        );
-                        _nextQuestion();
+                    if (question[index]["option4"] != null)
+                      GestureDetector(
+                        onTap: () {
+                          pageController.nextPage(
+                            duration: const Duration(milliseconds: 1000),
+                            curve: Curves.easeIn,
+                          );
+                          _nextQuestion();
 
-                        print("this is the index $currentQuestionIndex");
-                      },
-                      child: Text(
-                        question[index]["option4"].toString(),
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xff45536D),
+                          print("this is the index $currentQuestionIndex");
+                        },
+                        child: Text(
+                          question[index]["option4"].toString(),
+                          style: const TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xff45536D),
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 );
               },

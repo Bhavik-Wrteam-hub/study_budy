@@ -26,7 +26,8 @@ class PaymentSuccessScreen extends StatelessWidget {
             ),
             GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, "/home");
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, "/home", (Route route) => false);
                 },
                 child: CustomPrimaryButton(name: "Free Trial", blur: true)),
             SizedBox(
