@@ -168,59 +168,53 @@ class TimingScreen extends StatelessWidget {
                         // hour
                         SizedBox(
                           width: width * 0.1,
-                          child: Expanded(
-                            child: ListWheelScrollView.useDelegate(
-                              perspective: 0.005,
-                              diameterRatio: 1.2,
-                              itemExtent: 50,
-                              childDelegate: ListWheelChildBuilderDelegate(
-                                childCount: 13,
-                                builder: (context, index) {
-                                  return MyHour(
-                                    hour: index,
-                                  );
-                                },
-                              ),
+                          child: ListWheelScrollView.useDelegate(
+                            perspective: 0.005,
+                            diameterRatio: 1.2,
+                            itemExtent: 50,
+                            childDelegate: ListWheelChildBuilderDelegate(
+                              childCount: 13,
+                              builder: (context, index) {
+                                return MyHour(
+                                  hour: index,
+                                );
+                              },
                             ),
                           ),
                         ),
                         //minitus
                         SizedBox(
                           width: width * 0.1,
-                          child: Expanded(
-                            child: ListWheelScrollView.useDelegate(
-                              perspective: 0.005,
-                              diameterRatio: 1.2,
-                              itemExtent: 50,
-                              childDelegate: ListWheelChildBuilderDelegate(
-                                childCount: 60,
-                                builder: (context, index) {
-                                  return Myminutes(
-                                    mints: index,
-                                  );
-                                },
-                              ),
+                          child: ListWheelScrollView.useDelegate(
+                            perspective: 0.005,
+                            diameterRatio: 1.2,
+                            itemExtent: 50,
+                            childDelegate: ListWheelChildBuilderDelegate(
+                              childCount: 60,
+                              builder: (context, index) {
+                                return Myminutes(
+                                  mints: index,
+                                );
+                              },
                             ),
                           ),
                         ),
                         //am or pm
                         SizedBox(
                           width: width * 0.1,
-                          child: Expanded(
-                            child: ListWheelScrollView.useDelegate(
-                              perspective: 0.005,
-                              diameterRatio: 1.2,
-                              itemExtent: 50,
-                              childDelegate: ListWheelChildBuilderDelegate(
-                                childCount: 2,
-                                builder: (context, index) {
-                                  if (index == 0) {
-                                    return AmPm(isItAm: true);
-                                  } else {
-                                    return AmPm(isItAm: false);
-                                  }
-                                },
-                              ),
+                          child: ListWheelScrollView.useDelegate(
+                            perspective: 0.005,
+                            diameterRatio: 1.2,
+                            itemExtent: 50,
+                            childDelegate: ListWheelChildBuilderDelegate(
+                              childCount: 2,
+                              builder: (context, index) {
+                                if (index == 0) {
+                                  return AmPm(isItAm: true);
+                                } else {
+                                  return AmPm(isItAm: false);
+                                }
+                              },
                             ),
                           ),
                         ),

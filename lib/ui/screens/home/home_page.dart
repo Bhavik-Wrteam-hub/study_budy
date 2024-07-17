@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_budy/ui/screens/home/book_screen.dart';
 import 'package:study_budy/ui/screens/home/home_screen.dart';
+import 'package:study_budy/ui/screens/home/menu_screen/Statistics_screen.dart';
 import 'package:study_budy/ui/screens/home/study_planer/timing_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomePage> {
             child: BookScreen(),
           ),
           Center(child: TimingScreen()),
-          Center(child: Text("Menu")),
+          Center(child: StatisticsScreen()),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

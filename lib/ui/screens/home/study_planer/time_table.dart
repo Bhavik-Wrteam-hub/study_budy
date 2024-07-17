@@ -1,5 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+import 'package:study_budy/ui/widget/custom_primary_button.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class TimeTable extends StatefulWidget {
   const TimeTable({super.key});
@@ -9,10 +15,17 @@ class TimeTable extends StatefulWidget {
 }
 
 class _TimeTableState extends State<TimeTable> {
+  int? enddTime;
+  int? starttTime;
+  String? titlee;
+
+  TextEditingController title = TextEditingController();
+  TextEditingController startTime = TextEditingController();
+  TextEditingController endTime = TextEditingController();
+
+  bool switchValue = true;
   @override
   Widget build(BuildContext context) {
-    bool switchValue = true;
-
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -192,70 +205,161 @@ class _TimeTableState extends State<TimeTable> {
                 height: height * 0.02,
               ),
               //time table
-              Container(
-                height: height * 0.5,
-                width: width,
-                decoration: BoxDecoration(
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 3,
-                        spreadRadius: 1,
-                        offset: Offset(1, 2),
-                        color: Colors.grey,
-                      )
-                    ],
-                    borderRadius: const BorderRadius.all(Radius.circular(15)),
-                    color: Theme.of(context).colorScheme.secondary),
-                child: Stack(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text("Date"),
-                              Text("Sat"),
-                              Text("Jan"),
-                              Text("Mon"),
-                              Text("Tue"),
-                              Text("Wed"),
-                              Text("Thu"),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          height: height * 0.4 + 30,
-                          child: const Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("AM"),
-                              Text("PM"),
-                              Text("AM"),
-                              Text("PM"),
-                              Text("AM"),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                    Positioned(
-                      left: 20,
-                      child: Container(
-                          color: Colors.black, child: const VerticalDivider()),
-                    )
-                  ],
+              SizedBox(
+                height: height * 0.5 + 10,
+                child: SfCalendar(
+                  cellBorderColor: Colors.black54,
+                  view: CalendarView.week,
+                  dataSource: MeetingDataSorce(getAppointments(
+                      title: titlee ?? "emty",
+                      context: context,
+                      endtime: enddTime,
+                      starttime: starttTime ?? 0)),
                 ),
-              )
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              //
+              GestureDetector(
+                onTap: () {
+                  _bottomSheet(context);
+                },
+                child: SizedBox(
+                  height: height * 0.06,
+                  child: CustomPrimaryButton(
+                    name: "+  Add New Schedule",
+                    blur: false,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, "/pending");
+                },
+                child: SizedBox(
+                  height: height * 0.06,
+                  child: CustomPrimaryButton(
+                    name: "+  Save and Start Now",
+                    blur: false,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<dynamic> _bottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.5,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Add the Time",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    TextField(
+                      onChanged: (value) {
+                        titlee = value;
+                        print(titlee);
+                      },
+                      controller: title,
+                      decoration:
+                          const InputDecoration(hintText: "Enter the title"),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    TextField(
+                      onChanged: (value) {
+                        starttTime = int.parse(value);
+                        print(startTime);
+                      },
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
+                      ],
+                      controller: startTime,
+                      decoration: const InputDecoration(
+                          hintText: "Enter the Start Time"),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    TextField(
+                      onChanged: (value) {
+                        enddTime = int.parse(value);
+                        print(endTime);
+                      },
+                      keyboardType:
+                          const TextInputType.numberWithOptions(decimal: true),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp('[0-9.,]')),
+                      ],
+                      controller: endTime,
+                      decoration:
+                          const InputDecoration(hintText: "Enter the End Time"),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          getAppointments(
+                            context: context,
+                            starttime: starttTime,
+                            endtime: enddTime,
+                            title: titlee,
+                          );
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Submit"))
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+List<Appointment> getAppointments({context, starttime, endtime, title}) {
+  //print("This is the title" + title);
+  List<Appointment> meetings = <Appointment>[];
+
+  final DateTime today = DateTime.now();
+  final DateTime startTime =
+      DateTime(today.year, today.month, today.day, starttime, 0, 0);
+  final DateTime endTime = startTime.add(const Duration(hours: 2));
+
+  meetings.add(
+    Appointment(
+        startTime: startTime,
+        endTime: endTime,
+        subject: title.toString(),
+        color: Theme.of(context).colorScheme.primary),
+  );
+  return meetings;
+}
+
+class MeetingDataSorce extends CalendarDataSource {
+  MeetingDataSorce(List<Appointment> source) {
+    appointments = source;
   }
 }

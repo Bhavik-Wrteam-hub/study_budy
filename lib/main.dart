@@ -4,6 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:study_budy/ui/colors/colors.dart';
 import 'package:study_budy/ui/screens/home/book_screen.dart';
 import 'package:study_budy/ui/screens/home/home_page.dart';
+import 'package:study_budy/ui/screens/home/study_planer/edit_study.dart';
+import 'package:study_budy/ui/screens/home/study_planer/pending_screen.dart';
+import 'package:study_budy/ui/screens/home/study_planer/study_recomandation.dart';
 import 'package:study_budy/ui/screens/home/study_planer/time_table.dart';
 import 'package:study_budy/ui/screens/home/study_planer/timing_screen.dart';
 import 'package:study_budy/ui/screens/home/uploading_note/compalated_flash_cart.dart';
@@ -77,6 +80,10 @@ class _MyAppState extends State<MyApp> {
                   "/flashsummmery": (context) => const FlashSummeryScreen(),
                   "/timingscreen": (context) => const TimingScreen(),
                   "/timetable": (context) => const TimeTable(),
+                  "/pending": (context) => const PendingScreen(),
+                  "/editstudy": (context) => const EditStudy(),
+                  "/studyrecomandation": (context) =>
+                      const StudyRecomandation(),
                 },
               );
             }),
