@@ -41,7 +41,7 @@ class _TimeTableState extends State<TimeTable> {
           ),
         ],
         title: Container(
-          decoration: const BoxDecoration(
+          decoration:  BoxDecoration(
             boxShadow: [
               BoxShadow(
                 blurRadius: 3,
@@ -50,7 +50,7 @@ class _TimeTableState extends State<TimeTable> {
                 color: Colors.grey,
               )
             ],
-            color: Colors.amber,
+            color:Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.all(
               Radius.circular(16),
             ),
@@ -70,7 +70,7 @@ class _TimeTableState extends State<TimeTable> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                 
                 },
                 child: Icon(
                   Icons.keyboard_arrow_down_sharp,

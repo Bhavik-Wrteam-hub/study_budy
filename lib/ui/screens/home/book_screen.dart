@@ -28,74 +28,77 @@ class _BookScreenState extends State<BookScreen>
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return SafeArea(
-      child: Scaffold(
-          body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //app bar
-            _appbar(),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            // user text
-            _usertext(height),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            //tabbar
-            Container(
-              height: height * 0.06,
-              width: width * 0.9,
-              padding: const EdgeInsets.all(3),
-              decoration: const BoxDecoration(
-                color: Color(0xffEAECF0),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(22),
-                ),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 0,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //app bar
+              _appbar(),
+              SizedBox(
+                height: height * 0.02,
               ),
-              child: TabBar(
-                indicatorSize: TabBarIndicatorSize.tab,
-                dividerColor: Colors.transparent,
-                indicator: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                labelStyle:
-                    TextStyle(color: Theme.of(context).colorScheme.primary),
-                unselectedLabelColor: const Color(0xff686873),
-                controller: tabController,
-                tabs: const [
-                  Tab(
-                    text: "Today",
-                  ),
-                  Tab(
-                    text: "Weekly",
-                  ),
-                ],
+              // user text
+              _usertext(height),
+              SizedBox(
+                height: height * 0.02,
               ),
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            //Tabbar view
-            Flexible(
-              child: SizedBox(
-                child: TabBarView(
+              //tabbar
+              Container(
+                height: height * 0.06,
+                width: width * 0.9,
+                padding: const EdgeInsets.all(3),
+                decoration: const BoxDecoration(
+                  color: Color(0xffEAECF0),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(22),
+                  ),
+                ),
+                child: TabBar(
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  dividerColor: Colors.transparent,
+                  indicator: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  labelStyle:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                  unselectedLabelColor: const Color(0xff686873),
                   controller: tabController,
-                  children: const [
-                    TodayScreen(),
-                    WeeklyScreen(),
+                  tabs: const [
+                    Tab(
+                      text: "Today",
+                    ),
+                    Tab(
+                      text: "Weekly",
+                    ),
                   ],
                 ),
               ),
-            )
-          ],
-        ),
-      )),
-    );
+              SizedBox(
+                height: height * 0.02,
+              ),
+              //Tabbar view
+              Flexible(
+                child: SizedBox(
+                  child: TabBarView(
+                    controller: tabController,
+                    children: const [
+                      TodayScreen(),
+                      WeeklyScreen(),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 
   Column _usertext(double height) {

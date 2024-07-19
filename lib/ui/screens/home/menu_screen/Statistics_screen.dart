@@ -41,8 +41,8 @@ class _StatisticsScreenState extends State<StatisticsScreen>
           ),
         ),
         title: Container(
-          decoration: const BoxDecoration(
-            boxShadow: [
+          decoration: BoxDecoration(
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 3,
                 spreadRadius: 1,
@@ -50,8 +50,8 @@ class _StatisticsScreenState extends State<StatisticsScreen>
                 color: Colors.grey,
               )
             ],
-            color: Colors.amber,
-            borderRadius: BorderRadius.all(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: const BorderRadius.all(
               Radius.circular(16),
             ),
           ),
@@ -70,7 +70,7 @@ class _StatisticsScreenState extends State<StatisticsScreen>
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                 
                 },
                 child: Icon(
                   Icons.keyboard_arrow_down_sharp,
