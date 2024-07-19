@@ -317,6 +317,9 @@ class _TimeTableState extends State<TimeTable> {
                       decoration:
                           const InputDecoration(hintText: "Enter the End Time"),
                     ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
                     ElevatedButton(
                         onPressed: () {
                           getAppointments(

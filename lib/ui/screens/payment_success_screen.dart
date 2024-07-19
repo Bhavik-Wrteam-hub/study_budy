@@ -33,7 +33,12 @@ class PaymentSuccessScreen extends StatelessWidget {
             SizedBox(
               height: height * 0.02,
             ),
-            CustomPrimaryButton(name: "Pay Now", blur: true),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/paymentpackage");
+              },
+              child: CustomPrimaryButton(name: "Pay Now", blur: true),
+            ),
             SizedBox(
               height: height * 0.02,
             ),

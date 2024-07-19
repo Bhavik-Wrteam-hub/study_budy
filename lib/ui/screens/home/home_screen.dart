@@ -68,7 +68,9 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text("Mock Exams"),
+                      const Text(
+                        "Mock Exams",
+                      ),
                       Text(
                         "View All",
                         style: TextStyle(
@@ -117,17 +119,20 @@ class HomeScreen extends StatelessWidget {
             width: width * 0.5,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
               border: Border.all(color: const Color(0xffEAECF0)),
             ),
             child: Column(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      topLeft: Radius.circular(20)),
                   child: SizedBox(
                     height: height * 0.10,
                     width: width * 0.5,
                     child: Image.asset(
+                      fit: BoxFit.cover,
                       yourjourney[index]["image"].toString(),
                     ),
                   ),

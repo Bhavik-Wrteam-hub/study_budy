@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:study_budy/ui/colors/colors.dart';
 import 'package:study_budy/ui/screens/home/book_screen.dart';
 import 'package:study_budy/ui/screens/home/home_page.dart';
+import 'package:study_budy/ui/screens/home/menu_screen/home_activity.dart';
+import 'package:study_budy/ui/screens/home/menu_screen/profile_activity.dart';
 import 'package:study_budy/ui/screens/home/study_planer/edit_study.dart';
 import 'package:study_budy/ui/screens/home/study_planer/pending_screen.dart';
 import 'package:study_budy/ui/screens/home/study_planer/study_recomandation.dart';
@@ -19,6 +21,12 @@ import 'package:study_budy/ui/screens/home/uploading_note/uploading_note.dart';
 import 'package:study_budy/ui/screens/interest_screen.dart';
 import 'package:study_budy/ui/screens/onbording_first.dart';
 import 'package:study_budy/ui/screens/onbording_second.dart';
+import 'package:study_budy/ui/screens/payment_Screen/check_out.dart';
+import 'package:study_budy/ui/screens/payment_Screen/payment_last.dart';
+import 'package:study_budy/ui/screens/payment_Screen/payment_method.dart';
+import 'package:study_budy/ui/screens/payment_Screen/payment_package.dart';
+import 'package:study_budy/ui/screens/payment_Screen/payment_plan.dart';
+import 'package:study_budy/ui/screens/payment_Screen/payment_success.dart';
 import 'package:study_budy/ui/screens/payment_success_screen.dart';
 import 'package:study_budy/ui/screens/question_screen.dart';
 import 'package:study_budy/ui/screens/result_screen.dart';
@@ -45,10 +53,11 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-        enabled: true,
-        builder: (context) {
-          return Container(
-            child: Builder(builder: (context) {
+      enabled: true,
+      builder: (context) {
+        return Container(
+          child: Builder(
+            builder: (context) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 title: 'Flutter Demo',
@@ -84,10 +93,20 @@ class _MyAppState extends State<MyApp> {
                   "/editstudy": (context) => const EditStudy(),
                   "/studyrecomandation": (context) =>
                       const StudyRecomandation(),
+                  "/profileactivity": (context) => const ProfileActivity(),
+                  "/homeactivity": (context) => const HomeActivity(),
+                  "/paymentpackage": (context) => const PaymentPackage(),
+                  "/paymentplan": (context) => const PaymentPlan(),
+                  "/checkout": (context) => const CheckOut(),
+                  "/payment": (context) => const PaymentSuccess(),
+                  "/paymentmethod": (context) => const PaymentMethod(),
+                  "/paymentlast": (context) => const PaymentLast(),
                 },
               );
-            }),
-          );
-        });
+            },
+          ),
+        );
+      },
+    );
   }
 }

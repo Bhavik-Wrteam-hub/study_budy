@@ -82,7 +82,11 @@ class _StatisticsScreenState extends State<StatisticsScreen>
         ),
         centerTitle: true,
         actions: [
-          Image.asset("assets/png/Right_Icon_flash.png"),
+          GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, "/profileactivity");
+              },
+              child: Image.asset("assets/png/Right_Icon_flash.png")),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.05,
           ),
@@ -395,27 +399,68 @@ class OverrAllScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.02,
           ),
           Container(
-              margin: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.2,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondary,
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 3,
-                    spreadRadius: 1,
-                    offset: Offset(1, 2),
-                    color: Colors.grey,
-                  )
-                ],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: BarChart(
-                swapAnimationDuration:
-                    const Duration(milliseconds: 150), // Optional
-                swapAnimationCurve: Curves.linear,
-                BarChartData(),
-              ))
+            margin: const EdgeInsets.all(10),
+            height: MediaQuery.of(context).size.height * 0.4,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 3,
+                  spreadRadius: 1,
+                  offset: Offset(1, 2),
+                  color: Colors.grey,
+                )
+              ],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Image.asset("assets/png/chart.png"),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.04,
+                      ),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Performance"),
+                          Text("Comparison by week"),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width,
+                  child: LineChart(
+                    LineChartData(
+                      lineBarsData: [
+                        LineChartBarData(
+                            spots: [
+                              const FlSpot(0, 3),
+                              const FlSpot(1, 1),
+                              const FlSpot(2, 3),
+                              const FlSpot(3, 4),
+                              const FlSpot(3, 5),
+                              const FlSpot(4, 4)
+                            ],
+                            isCurved: true,
+                            barWidth: 2,
+                            color: Theme.of(context).colorScheme.primary)
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
