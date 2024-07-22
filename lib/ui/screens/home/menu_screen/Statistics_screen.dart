@@ -15,6 +15,8 @@ class _StatisticsScreenState extends State<StatisticsScreen>
   late TabController tabController;
   String? title;
   int currentindex = 0;
+  String? dropvalue;
+
   @override
   void initState() {
     tabController = TabController(length: 3, vsync: this);
@@ -31,6 +33,7 @@ class _StatisticsScreenState extends State<StatisticsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         leadingWidth: 110,
         leading: const Padding(
@@ -40,7 +43,8 @@ class _StatisticsScreenState extends State<StatisticsScreen>
             style: TextStyle(fontSize: 20),
           ),
         ),
-        title: Container(
+        title: // subject list
+            Container(
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
@@ -55,26 +59,75 @@ class _StatisticsScreenState extends State<StatisticsScreen>
               Radius.circular(16),
             ),
           ),
-          width: MediaQuery.of(context).size.width * 0.3,
-          height: MediaQuery.of(context).size.height * 0.03 + 5,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          width: MediaQuery.of(context).size.width * 0.3 + 20,
+          height: MediaQuery.of(context).size.height * 0.05,
+          child: Stack(
             children: [
-              Image.asset("assets/png/grommet-icons_language.png"),
-              Text(
-                'English',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 15,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                 
-                },
-                child: Icon(
-                  Icons.keyboard_arrow_down_sharp,
-                  color: Theme.of(context).colorScheme.secondary,
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.3 + 20,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        margin: const EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width * 0.04,
+                        height: MediaQuery.of(context).size.height * 0.02,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.contain,
+                            image: AssetImage(
+                                "assets/png/grommet-icons_language.png"),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      child: Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.all(5),
+                            height: MediaQuery.of(context).size.height * 0.03,
+                            child: DropdownButton(
+                              iconDisabledColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              iconEnabledColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              icon: const Center(
+                                  child: Icon(Icons.arrow_drop_down)),
+                              // padding: const EdgeInsets.only(top: 10),
+                              underline: const SizedBox(),
+                              hint: Text(
+                                dropvalue ?? "English",
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
+                              ),
+                              alignment: Alignment.topCenter,
+                              items: ['English', 'Hindi', 'Gujrati', 'Gambia']
+                                  .map((value) {
+                                return DropdownMenuItem(
+                                  alignment: Alignment.center,
+                                  value: value,
+                                  child: Container(
+                                    color: Colors.amber,
+                                    child: Text(value),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  dropvalue = value;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               )
             ],
@@ -95,6 +148,7 @@ class _StatisticsScreenState extends State<StatisticsScreen>
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             Container(
               height: MediaQuery.of(context).size.height * 0.04,
               width: MediaQuery.of(context).size.width * 0.9,
@@ -136,7 +190,7 @@ class _StatisticsScreenState extends State<StatisticsScreen>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: TabBarView(
                   controller: tabController,
@@ -436,25 +490,27 @@ class OverrAllScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  width: MediaQuery.of(context).size.width,
-                  child: LineChart(
-                    LineChartData(
-                      lineBarsData: [
-                        LineChartBarData(
-                            spots: [
-                              const FlSpot(0, 3),
-                              const FlSpot(1, 1),
-                              const FlSpot(2, 3),
-                              const FlSpot(3, 4),
-                              const FlSpot(3, 5),
-                              const FlSpot(4, 4)
-                            ],
-                            isCurved: true,
-                            barWidth: 2,
-                            color: Theme.of(context).colorScheme.primary)
-                      ],
+                Expanded(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width,
+                    child: LineChart(
+                      LineChartData(
+                        lineBarsData: [
+                          LineChartBarData(
+                              spots: [
+                                const FlSpot(0, 3),
+                                const FlSpot(1, 1),
+                                const FlSpot(2, 3),
+                                const FlSpot(3, 4),
+                                const FlSpot(3, 5),
+                                const FlSpot(4, 4)
+                              ],
+                              isCurved: true,
+                              barWidth: 2,
+                              color: Theme.of(context).colorScheme.primary)
+                        ],
+                      ),
                     ),
                   ),
                 ),

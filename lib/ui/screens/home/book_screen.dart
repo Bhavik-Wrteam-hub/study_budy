@@ -29,76 +29,77 @@ class _BookScreenState extends State<BookScreen>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          automaticallyImplyLeading: false,
-          toolbarHeight: 0,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //app bar
-              _appbar(),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              // user text
-              _usertext(height),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              //tabbar
-              Container(
-                height: height * 0.06,
-                width: width * 0.9,
-                padding: const EdgeInsets.all(3),
-                decoration: const BoxDecoration(
-                  color: Color(0xffEAECF0),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(22),
-                  ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //app bar
+            _appbar(),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            // user text
+            _usertext(height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            //tabbar
+            Container(
+              height: height * 0.06,
+              width: width * 0.9,
+              padding: const EdgeInsets.all(3),
+              decoration: const BoxDecoration(
+                color: Color(0xffEAECF0),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(22),
                 ),
-                child: TabBar(
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  indicator: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(20),
+              ),
+              child: TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                labelStyle:
+                    TextStyle(color: Theme.of(context).colorScheme.primary),
+                unselectedLabelColor: const Color(0xff686873),
+                controller: tabController,
+                tabs: const [
+                  Tab(
+                    text: "Today",
                   ),
-                  labelStyle:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                  unselectedLabelColor: const Color(0xff686873),
+                  Tab(
+                    text: "Weekly",
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            //Tabbar view
+            Expanded(
+              child: SizedBox(
+                child: TabBarView(
                   controller: tabController,
-                  tabs: const [
-                    Tab(
-                      text: "Today",
-                    ),
-                    Tab(
-                      text: "Weekly",
-                    ),
+                  children: const [
+                    TodayScreen(),
+                    WeeklyScreen(),
                   ],
                 ),
               ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              //Tabbar view
-              Flexible(
-                child: SizedBox(
-                  child: TabBarView(
-                    controller: tabController,
-                    children: const [
-                      TodayScreen(),
-                      WeeklyScreen(),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Column _usertext(double height) {
@@ -146,8 +147,7 @@ class TodayScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-        body: SingleChildScrollView(
+    return SingleChildScrollView(
       child: Column(
         children: [
           // calender
@@ -373,115 +373,121 @@ class TodayScreen extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            height: height * 0.01,
+          ),
           // Tpics container
 
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
             width: MediaQuery.of(context).size.width * 0.9,
             child: ListView.separated(
-              physics:
-                  const ScrollPhysics(parent: NeverScrollableScrollPhysics()),
+              physics: const ScrollPhysics(
+                parent: NeverScrollableScrollPhysics(),
+              ),
               padding: EdgeInsets.zero,
               itemCount: tpicCard.length,
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.10,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 3,
-                          spreadRadius: 1,
-                          offset: Offset(1, 2),
-                          color: Colors.grey,
-                        )
-                      ],
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(15),
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.10,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      decoration: BoxDecoration(
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 3,
+                            spreadRadius: 1,
+                            offset: Offset(1, 2),
+                            color: Colors.grey,
+                          )
+                        ],
+                        color: Theme.of(context).colorScheme.secondary,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(15),
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            CircularProgressIndicator.adaptive(
-                              value: double.parse(
-                                tpicCard[index]["progress"].toString(),
-                              ),
-                              backgroundColor: const Color(0xffEAECF0),
-                              valueColor: const AlwaysStoppedAnimation<Color>(
-                                  Colors.amber),
-                            ),
-                            Center(
-                              child: Text(
-                                tpicCard[index]["percentage"].toString(),
-                                style: const TextStyle(
-                                    fontSize: 10, fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.02,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.height * 0.05,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Row(
+                        //crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    tpicCard[index]["title"].toString(),
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    tpicCard[index]["subtitle"].toString(),
-                                    style: const TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 9,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pushNamed(context, "/uploadnote");
-                                },
-                                child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.04,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.09,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: tpicCard[index]["icon"].toString() ==
-                                          "false"
-                                      ? const Icon(Icons.add)
-                                      : const Icon(
-                                          Icons.check,
-                                          color: Colors.green,
-                                        ),
+                              CircularProgressIndicator.adaptive(
+                                value: double.parse(
+                                  tpicCard[index]["progress"].toString(),
                                 ),
-                              )
+                                backgroundColor: const Color(0xffEAECF0),
+                                valueColor: const AlwaysStoppedAnimation<Color>(
+                                    Colors.amber),
+                              ),
+                              Center(
+                                child: Text(
+                                  tpicCard[index]["percentage"].toString(),
+                                  style: const TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            height: MediaQuery.of(context).size.height * 0.05,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      tpicCard[index]["title"].toString(),
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      tpicCard[index]["subtitle"].toString(),
+                                      style: const TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 9,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, "/uploadnote");
+                                  },
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.04,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.09,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                    child: tpicCard[index]["icon"].toString() ==
+                                            "false"
+                                        ? const Icon(Icons.add)
+                                        : const Icon(
+                                            Icons.check,
+                                            color: Colors.green,
+                                          ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -495,17 +501,43 @@ class TodayScreen extends StatelessWidget {
           ),
         ],
       ),
-    ));
+    );
   }
 }
 
-class WeeklyScreen extends StatelessWidget {
+class WeeklyScreen extends StatefulWidget {
   const WeeklyScreen({super.key});
 
   @override
+  State<WeeklyScreen> createState() => _WeeklyScreenState();
+}
+
+class _WeeklyScreenState extends State<WeeklyScreen> {
+  String? dropvalue;
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text("This is the Weekly"),
+    return Column(
+      children: [
+        DropdownButton(
+          underline: const SizedBox(),
+          hint: Text(dropvalue ?? "English"),
+          alignment: Alignment.topCenter,
+          items: ['A', 'b', 'c', 'd'].map((value) {
+            return DropdownMenuItem(
+              value: value,
+              child: Container(
+                color: Colors.amber,
+                child: Text(value),
+              ),
+            );
+          }).toList(),
+          onChanged: (value) {
+            setState(() {
+              dropvalue = value;
+            });
+          },
+        ),
+      ],
     );
   }
 }

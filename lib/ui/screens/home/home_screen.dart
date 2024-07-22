@@ -13,97 +13,102 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(body: Builder(builder: (context) {
-      return SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                // app bar
-                appbar(),
-                SizedBox(height: height * 0.02),
-                //second row
-                secondRow(height, width),
-                SizedBox(height: height * 0.02),
-                //subject Text
-                Container(
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Subjects"),
-                      Text(
-                        "View All",
-                        style: TextStyle(color: Color(0xff3843FF)),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: height * 0.02),
-                //Recent Topic
-                subjectlist(height, width),
-
-                SizedBox(height: height * 0.02),
-
-                //Recent Topics
-                Container(
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Recent Topics"),
-                      Text(
-                        "View All",
-                        style: TextStyle(color: Color(0xff3843FF)),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: height * 0.02),
-                //Recent topic conatainer
-                recent_topic(height, width),
-                SizedBox(height: height * 0.02),
-
-                // Mock Exams text
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "Mock Exams",
-                      ),
-                      Text(
-                        "View All",
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: height * 0.02),
-                //Mock Exams text countainer
-                mock_exam(height, width),
-                SizedBox(height: height * 0.02),
-
-                //Your Journey text
-                Container(
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Your Journey"),
-                      Text(
-                        "View All",
-                        style: TextStyle(color: Color(0xff3843FF)),
-                      ),
-                    ],
-                  ),
-                ),
-                yourJourney(height, width)
-              ],
-            ),
-          ),
+    return Scaffold(
+        appBar: AppBar(
+          surfaceTintColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          toolbarHeight: 0,
         ),
-      );
-    }));
+        body: Builder(builder: (context) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  // app bar
+                  appbar(),
+                  SizedBox(height: height * 0.02),
+                  //second row
+                  secondRow(height, width),
+                  SizedBox(height: height * 0.02),
+                  //subject Text
+                  Container(
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Subjects"),
+                        Text(
+                          "View All",
+                          style: TextStyle(color: Color(0xff3843FF)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+                  //Recent Topic
+                  subjectlist(height, width),
+
+                  SizedBox(height: height * 0.02),
+
+                  //Recent Topics
+                  Container(
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Recent Topics"),
+                        Text(
+                          "View All",
+                          style: TextStyle(color: Color(0xff3843FF)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+                  //Recent topic conatainer
+                  recent_topic(height, width),
+                  SizedBox(height: height * 0.02),
+
+                  // Mock Exams text
+                  Container(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Mock Exams",
+                        ),
+                        Text(
+                          "View All",
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: height * 0.02),
+                  //Mock Exams text countainer
+                  mock_exam(height, width),
+                  SizedBox(height: height * 0.02),
+
+                  //Your Journey text
+                  Container(
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Your Journey"),
+                        Text(
+                          "View All",
+                          style: TextStyle(color: Color(0xff3843FF)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  yourJourney(height, width)
+                ],
+              ),
+            ),
+          );
+        }));
   }
 
   SizedBox yourJourney(double height, double width) {

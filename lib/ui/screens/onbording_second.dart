@@ -185,7 +185,7 @@ class _OnbordingSecondState extends State<OnbordingSecond> {
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.05,
+                                    MediaQuery.of(context).size.height * 0.06,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

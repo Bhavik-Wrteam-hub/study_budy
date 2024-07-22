@@ -64,7 +64,7 @@ class ResultScreen extends StatelessWidget {
 
   Container morecontainer(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.1 + 60,
+      height: MediaQuery.of(context).size.height * 0.1 + 65,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -81,7 +81,7 @@ class ResultScreen extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1 + 40,
+            height: MediaQuery.of(context).size.height * 0.1 + 45,
             width: MediaQuery.of(context).size.width * 0.9,
             child: ListView.builder(
               itemCount: result.length,
@@ -187,8 +187,9 @@ class ResultScreen extends StatelessWidget {
                           height: MediaQuery.of(context).size.height * 0.04,
                           width: MediaQuery.of(context).size.width * 0.09,
                           decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: const Color(0xffEAECF0)),
+                              border: Border.all(
+                                color: const Color(0xffEAECF0),
+                              ),
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(10))),
                           child: const Icon(Icons.arrow_drop_down_outlined))

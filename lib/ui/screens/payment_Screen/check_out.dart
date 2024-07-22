@@ -9,6 +9,8 @@ class CheckOut extends StatefulWidget {
 }
 
 class _CheckOutState extends State<CheckOut> {
+  String? dropvalue;
+
   final List<String> _locations = ['A', 'B', 'C', 'D']; // Option 2
   String? _selectedLocation;
   int cartradio = 0;
@@ -44,41 +46,83 @@ class _CheckOutState extends State<CheckOut> {
                       Radius.circular(16),
                     ),
                   ),
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  height: MediaQuery.of(context).size.height * 0.03 + 5,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  width: MediaQuery.of(context).size.width * 0.3 + 20,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  child: Stack(
                     children: [
-                      Image.asset("assets/png/grommet-icons_language.png"),
-                      Text(
-                        'English',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary,
-                          fontSize: 15,
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          print("On tap print");
-                          DropdownButton(
-                            value: _selectedLocation,
-                            onChanged: (newValue) {
-                              setState(() {
-                                _selectedLocation = newValue;
-                              });
-                            },
-                            items: _locations.map((location) {
-                              print(location);
-                              return DropdownMenuItem(
-                                value: location,
-                                child: Text(location),
-                              );
-                            }).toList(),
-                          );
-                        },
-                        child: Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: Theme.of(context).colorScheme.secondary,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.3 + 20,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Container(
+                                margin: const EdgeInsets.all(10),
+                                width: MediaQuery.of(context).size.width * 0.04,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.contain,
+                                    image: AssetImage(
+                                        "assets/png/grommet-icons_language.png"),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.all(5),
+                                    height: MediaQuery.of(context).size.height *
+                                        0.03,
+                                    child: DropdownButton(
+                                      iconDisabledColor: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      iconEnabledColor: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                      icon: const Center(
+                                          child: Icon(Icons.arrow_drop_down)),
+                                      // padding: const EdgeInsets.only(top: 10),
+                                      underline: const SizedBox(),
+                                      hint: Text(
+                                        dropvalue ?? "English",
+                                        style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary),
+                                      ),
+                                      alignment: Alignment.topCenter,
+                                      items: [
+                                        'English',
+                                        'Hindi',
+                                        'Gujrati',
+                                        'Gambia'
+                                      ].map((value) {
+                                        return DropdownMenuItem(
+                                          alignment: Alignment.center,
+                                          value: value,
+                                          child: Container(
+                                            color: Colors.amber,
+                                            child: Text(value),
+                                          ),
+                                        );
+                                      }).toList(),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          dropvalue = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                       )
                     ],
@@ -215,34 +259,38 @@ class _CheckOutState extends State<CheckOut> {
               ),
               Container(
                 padding: const EdgeInsets.all(20),
-                height: MediaQuery.of(context).size.height * 0.07,
+                height: MediaQuery.of(context).size.height * 0.09,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                   color: Theme.of(context).colorScheme.primary,
                 ),
-                child: Row(
-                  children: [
-                    Radio(
-                      fillColor: WidgetStateProperty.all(Colors.white),
-                      activeColor: Theme.of(context).colorScheme.primary,
-                      value: 0,
-                      groupValue: radio,
-                      onChanged: (value) {
-                        setState(() {
-                          radio = value!;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.1,
-                    ),
-                    Text(
-                      "Flutter Wave",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary),
-                    )
-                  ],
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Radio(
+                        fillColor: WidgetStateProperty.all(Colors.white),
+                        activeColor: Theme.of(context).colorScheme.primary,
+                        value: 0,
+                        groupValue: radio,
+                        onChanged: (value) {
+                          setState(() {
+                            radio = value!;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Text(
+                        "Flutter Wave",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -250,34 +298,38 @@ class _CheckOutState extends State<CheckOut> {
               ),
               Container(
                 padding: const EdgeInsets.all(20),
-                height: MediaQuery.of(context).size.height * 0.07,
+                height: MediaQuery.of(context).size.height * 0.09,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                   color: Theme.of(context).colorScheme.primary,
                 ),
-                child: Row(
-                  children: [
-                    Radio(
-                      fillColor: WidgetStateProperty.all(Colors.white),
-                      activeColor: Theme.of(context).colorScheme.primary,
-                      value: 1,
-                      groupValue: radio,
-                      onChanged: (value) {
-                        setState(() {
-                          radio = value!;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.1,
-                    ),
-                    Text(
-                      "Afri-money",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary),
-                    )
-                  ],
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Radio(
+                        fillColor: WidgetStateProperty.all(Colors.white),
+                        activeColor: Theme.of(context).colorScheme.primary,
+                        value: 1,
+                        groupValue: radio,
+                        onChanged: (value) {
+                          setState(() {
+                            radio = value!;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Text(
+                        "Afri-money",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -285,34 +337,38 @@ class _CheckOutState extends State<CheckOut> {
               ),
               Container(
                 padding: const EdgeInsets.all(20),
-                height: MediaQuery.of(context).size.height * 0.07,
+                height: MediaQuery.of(context).size.height * 0.09,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                   color: Theme.of(context).colorScheme.primary,
                 ),
-                child: Row(
-                  children: [
-                    Radio(
-                      fillColor: WidgetStateProperty.all(Colors.white),
-                      activeColor: Theme.of(context).colorScheme.primary,
-                      value: 2,
-                      groupValue: radio,
-                      onChanged: (value) {
-                        setState(() {
-                          radio = value!;
-                        });
-                      },
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.1,
-                    ),
-                    Text(
-                      "Access Code",
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.secondary),
-                    )
-                  ],
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Radio(
+                        fillColor: WidgetStateProperty.all(Colors.white),
+                        activeColor: Theme.of(context).colorScheme.primary,
+                        value: 2,
+                        groupValue: radio,
+                        onChanged: (value) {
+                          setState(() {
+                            radio = value!;
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.1,
+                      ),
+                      Text(
+                        "Access Code",
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

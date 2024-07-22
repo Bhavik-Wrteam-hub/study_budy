@@ -158,7 +158,9 @@ class _FlashSummeryScreenState extends State<FlashSummeryScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
                     child: Image.asset("assets/png/Search_bottom.png")),
                 Text(
                   "Study Planner",
@@ -171,7 +173,9 @@ class _FlashSummeryScreenState extends State<FlashSummeryScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
                     child: Image.asset("assets/png/Menu_bottom.png")),
                 Text(
                   "Menu",

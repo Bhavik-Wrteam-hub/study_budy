@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:study_budy/data/map/achievement_map.dart';
 import 'package:study_budy/ui/screens/home/book_screen.dart';
@@ -37,159 +38,191 @@ class _HomeScreenState extends State<HomePage> {
         shape: const CircleBorder(),
         onPressed: () {
           showDialog(
+            barrierDismissible: true,
             context: context,
             builder: (context) {
-              return AlertDialog(
-                content: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Hello Kara!",
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
-                      const Text(
-                        "GOOD JOB!",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.04,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              return Stack(
+                children: [
+                  AlertDialog(
+                    content: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.5 + 10,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          const Text(
+                            "Hello Kara!",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
+                          ),
+                          const Text(
+                            "GOOD JOB!",
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.04,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text("Learned today"),
-                              SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.01,
-                              ),
-                              RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                    text: "46",
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text("Learned today"),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text: "46",
+                                          style: TextStyle(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                          ),
+                                        ),
+                                        const TextSpan(
+                                          text: " min",
+                                          style: TextStyle(color: Colors.black),
+                                        )
+                                      ],
                                     ),
                                   ),
-                                  const TextSpan(
-                                    text: " min",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ]),
+                                ],
                               ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text("Learned today"),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
+                                  RichText(
+                                    text: TextSpan(children: [
+                                      TextSpan(
+                                        text: "408",
+                                        style: TextStyle(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                        ),
+                                      ),
+                                      const TextSpan(
+                                        text: " hrs",
+                                        style: TextStyle(color: Colors.black),
+                                      )
+                                    ]),
+                                  ),
+                                ],
+                              )
                             ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.03,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text("Learned today"),
+                              const Text("Totally days"),
                               SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.01,
                               ),
-                              RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                    text: "408",
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                    ),
-                                  ),
-                                  const TextSpan(
-                                    text: " hrs",
-                                    style: TextStyle(color: Colors.black),
-                                  )
-                                ]),
+                              const Text(
+                                "30 days",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.04,
+                          ),
+                          Column(
+                            children: [
+                              const Center(
+                                child: Text(
+                                  "Record of this week",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17),
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
+                                width: MediaQuery.of(context).size.width,
+                                child: ListView.separated(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: popuprecord.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.09,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.09,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xffEEEFEF),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Center(
+                                        child: Text(popuprecord[index]["title"]
+                                            .toString()),
+                                      ),
+                                    );
+                                  },
+                                  separatorBuilder:
+                                      (BuildContext context, int index) {
+                                    return SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.02,
+                                    );
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02,
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.05,
+                                child: CustomPrimaryButton(
+                                  blur: false,
+                                  name: "Share",
+                                ),
                               ),
                             ],
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Totally days"),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01,
-                          ),
-                          const Text(
-                            "30 days",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.04,
-                      ),
-                      Column(
-                        children: [
-                          const Center(
-                            child: Text(
-                              "Record of this week",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            width: MediaQuery.of(context).size.width,
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: popuprecord.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.09,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.09,
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xffEEEFEF),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                        popuprecord[index]["title"].toString()),
-                                  ),
-                                );
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.02,
-                                );
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            child: CustomPrimaryButton(
-                              blur: false,
-                              name: "Share",
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
+                    ),
                   ),
-                ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: MediaQuery.of(context).size.width * 0.1,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Theme.of(context).colorScheme.secondary),
+                        child: const Icon(Icons.close),
+                      ),
+                    ),
+                  )
+                ],
               );
             },
           );

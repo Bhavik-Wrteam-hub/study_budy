@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) {
         return Container(
           child: Builder(

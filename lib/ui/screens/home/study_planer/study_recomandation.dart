@@ -2,8 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:study_budy/data/map/test_map.dart';
 
-class StudyRecomandation extends StatelessWidget {
+class StudyRecomandation extends StatefulWidget {
   const StudyRecomandation({super.key});
+
+  @override
+  State<StudyRecomandation> createState() => _StudyRecomandationState();
+}
+
+class _StudyRecomandationState extends State<StudyRecomandation> {
+  String? dropvalue;
 
   @override
   Widget build(BuildContext context) {
@@ -57,24 +64,80 @@ class StudyRecomandation extends StatelessWidget {
                   Radius.circular(16),
                 ),
               ),
-              width: MediaQuery.of(context).size.width * 0.3,
-              height: MediaQuery.of(context).size.height * 0.03 + 5,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              width: MediaQuery.of(context).size.width * 0.3 + 20,
+              height: MediaQuery.of(context).size.height * 0.05,
+              child: Stack(
                 children: [
-                  Image.asset("assets/png/grommet-icons_language.png"),
-                  Text(
-                    'English',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 15,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.keyboard_arrow_down_sharp,
-                      color: Theme.of(context).colorScheme.secondary,
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.3 + 20,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Container(
+                            margin: const EdgeInsets.all(10),
+                            width: MediaQuery.of(context).size.width * 0.04,
+                            height: MediaQuery.of(context).size.height * 0.02,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.contain,
+                                image: AssetImage(
+                                    "assets/png/grommet-icons_language.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Column(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.all(5),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.03,
+                                child: DropdownButton(
+                                  iconDisabledColor:
+                                      Theme.of(context).colorScheme.secondary,
+                                  iconEnabledColor:
+                                      Theme.of(context).colorScheme.secondary,
+                                  icon: const Center(
+                                      child: Icon(Icons.arrow_drop_down)),
+                                  // padding: const EdgeInsets.only(top: 10),
+                                  underline: const SizedBox(),
+                                  hint: Text(
+                                    dropvalue ?? "English",
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary),
+                                  ),
+                                  alignment: Alignment.topCenter,
+                                  items: [
+                                    'English',
+                                    'Hindi',
+                                    'Gujrati',
+                                    'Gambia'
+                                  ].map((value) {
+                                    return DropdownMenuItem(
+                                      alignment: Alignment.center,
+                                      value: value,
+                                      child: Container(
+                                        color: Colors.amber,
+                                        child: Text(value),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (value) {
+                                    setState(() {
+                                      dropvalue = value;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   )
                 ],
@@ -200,7 +263,9 @@ class StudyRecomandation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
                     child: Image.asset("assets/png/Menu_bottom.png")),
                 Text(
                   "Menu",

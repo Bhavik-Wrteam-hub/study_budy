@@ -35,204 +35,204 @@ class _HomeActivityState extends State<HomeActivity>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 0,
-          automaticallyImplyLeading: false,
-          systemOverlayStyle:
-              const SystemUiOverlayStyle(statusBarColor: Colors.white),
-          backgroundColor: Colors.transparent,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              //first row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Hi, Mert 👋🏻"),
-                      Text(
-                        "Let’s make habits together!",
-                        style: TextStyle(color: Color(0XFF9B9BA1)),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.09,
-                    width: MediaQuery.of(context).size.width * 0.08,
-                    decoration: const BoxDecoration(
-                        color: Color(0xffDDF2FC), shape: BoxShape.circle),
-                    child: const Center(
-                      child: Text("😇"),
-                    ),
-                  )
-                ],
-              ),
-              //second row
-              Row(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.07,
-                    width: MediaQuery.of(context).size.width * 0.15,
-                    decoration: const BoxDecoration(),
-                    child: Image.asset(
-                      "assets/png/Base.png",
-                    ),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.02,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text("Kara Jagne"),
-                      Image.asset(
-                        "assets/png/Status_Badge_home.png",
-                        fit: BoxFit.cover,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              //tab bar
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.04,
-                width: MediaQuery.of(context).size.width * 0.9,
-                padding: const EdgeInsets.all(3),
-                decoration: const BoxDecoration(
-                  color: Color(0xffEAECF0),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(22),
-                  ),
-                ),
-                child: TabBar(
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  dividerColor: Colors.transparent,
-                  indicator: BoxDecoration(
-                    color: Theme.of(context).colorScheme.secondary,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  labelStyle:
-                      TextStyle(color: Theme.of(context).colorScheme.primary),
-                  unselectedLabelColor: const Color(0xff686873),
-                  controller: tabController,
-                  tabs: const [
-                    Tab(
-                      text: "Overall",
-                    ),
-                    Tab(
-                      text: "Weekly",
-                    ),
-                    Tab(
-                      text: "Achievements",
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              //tab bar view
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
-                width: MediaQuery.of(context).size.width,
-                child: TabBarView(
-                  controller: tabController,
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 0,
+        automaticallyImplyLeading: false,
+        systemOverlayStyle:
+            const SystemUiOverlayStyle(statusBarColor: Colors.white),
+        backgroundColor: Colors.transparent,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            //first row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Mockexam(),
-                    Container(),
-                    const ProfileAchievement()
+                    Text("Hi, Mert 👋🏻"),
+                    Text(
+                      "Let’s make habits together!",
+                      style: TextStyle(color: Color(0XFF9B9BA1)),
+                    ),
                   ],
                 ),
-              )
-            ],
-          ),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.09,
+                  width: MediaQuery.of(context).size.width * 0.08,
+                  decoration: const BoxDecoration(
+                      color: Color(0xffDDF2FC), shape: BoxShape.circle),
+                  child: const Center(
+                    child: Text("😇"),
+                  ),
+                )
+              ],
+            ),
+            //second row
+            Row(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  width: MediaQuery.of(context).size.width * 0.15,
+                  decoration: const BoxDecoration(),
+                  child: Image.asset(
+                    "assets/png/Base.png",
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.02,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Kara Jagne"),
+                    Image.asset(
+                      "assets/png/Status_Badge_home.png",
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                )
+              ],
+            ),
+            //tab bar
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.04,
+              width: MediaQuery.of(context).size.width * 0.9,
+              padding: const EdgeInsets.all(3),
+              decoration: const BoxDecoration(
+                color: Color(0xffEAECF0),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(22),
+                ),
+              ),
+              child: TabBar(
+                indicatorSize: TabBarIndicatorSize.tab,
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                labelStyle:
+                    TextStyle(color: Theme.of(context).colorScheme.primary),
+                unselectedLabelColor: const Color(0xff686873),
+                controller: tabController,
+                tabs: const [
+                  Tab(
+                    text: "Overall",
+                  ),
+                  Tab(
+                    text: "Weekly",
+                  ),
+                  Tab(
+                    text: "Achievements",
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            //tab bar view
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width,
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  const Mockexam(),
+                  Container(),
+                  const ProfileAchievement()
+                ],
+              ),
+            )
+          ],
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          shape: const CircleBorder(),
-          onPressed: () {},
-          child: Center(
-            child: Image.asset("assets/png/messages icon.png"),
-          ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        shape: const CircleBorder(),
+        onPressed: () {},
+        child: Center(
+          child: Image.asset("assets/png/messages icon.png"),
         ),
-        bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          notchMargin: 5.0,
-          color: Theme.of(context).colorScheme.primary,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/home");
-                      },
-                      child: Image.asset("assets/png/home_bottom.png")),
-                  Text(
-                    "Home",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary),
-                  )
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/book");
-                      },
-                      child: Image.asset("assets/png/Articles_bottom.png")),
-                  Text(
-                    "Books",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary),
-                  )
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/home");
-                      },
-                      child: Image.asset("assets/png/Search_bottom.png")),
-                  Text(
-                    "Study Planner",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary),
-                  )
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                      onTap: () {},
-                      child: Image.asset("assets/png/Menu_bottom.png")),
-                  Text(
-                    "Menu",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary),
-                  )
-                ],
-              ),
-            ],
-          ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 5.0,
+        color: Theme.of(context).colorScheme.primary,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
+                    child: Image.asset("assets/png/home_bottom.png")),
+                Text(
+                  "Home",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/book");
+                    },
+                    child: Image.asset("assets/png/Articles_bottom.png")),
+                Text(
+                  "Books",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
+                    child: Image.asset("assets/png/Search_bottom.png")),
+                Text(
+                  "Study Planner",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/home");
+                    },
+                    child: Image.asset("assets/png/Menu_bottom.png")),
+                Text(
+                  "Menu",
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.secondary),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -419,7 +419,7 @@ class ProfileAchievement extends StatelessWidget {
               itemBuilder: (context, index) {
                 int color = int.parse(achievement[index]["color"]!);
                 return Container(
-                  height: MediaQuery.of(context).size.height * 0.08,
+                  height: MediaQuery.of(context).size.height * 0.09,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     boxShadow: const [

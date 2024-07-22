@@ -22,6 +22,7 @@ class _TimeTableState extends State<TimeTable> {
   TextEditingController title = TextEditingController();
   TextEditingController startTime = TextEditingController();
   TextEditingController endTime = TextEditingController();
+  String? dropvalue;
 
   bool switchValue = true;
   @override
@@ -30,57 +31,105 @@ class _TimeTableState extends State<TimeTable> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        leading: const Icon(Icons.arrow_back_ios_new_rounded),
-        actions: [
-          const Icon(Icons.notifications_active_outlined),
-          SizedBox(
-            width: width * 0.04,
-          ),
-        ],
-        title: Container(
-          decoration:  BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 3,
-                spreadRadius: 1,
-                offset: Offset(1, 2),
-                color: Colors.grey,
-              )
-            ],
-            color:Theme.of(context).colorScheme.primary,
-            borderRadius: BorderRadius.all(
-              Radius.circular(16),
+          surfaceTintColor: Colors.transparent,
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          leading: const Icon(Icons.arrow_back_ios_new_rounded),
+          actions: [
+            const Icon(Icons.notifications_active_outlined),
+            SizedBox(
+              width: width * 0.04,
             ),
-          ),
-          width: width * 0.3,
-          height: height * 0.03 + 5,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset("assets/png/grommet-icons_language.png"),
-              Text(
-                'English',
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.secondary,
-                  fontSize: 15,
-                ),
+          ],
+          title: Container(
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 3,
+                  spreadRadius: 1,
+                  offset: Offset(1, 2),
+                  color: Colors.grey,
+                )
+              ],
+              color: Theme.of(context).colorScheme.primary,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(16),
               ),
-              InkWell(
-                onTap: () {
-                 
-                },
-                child: Icon(
-                  Icons.keyboard_arrow_down_sharp,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+            ),
+            width: MediaQuery.of(context).size.width * 0.3 + 20,
+            height: MediaQuery.of(context).size.height * 0.05,
+            child: Stack(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3 + 20,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Container(
+                          margin: const EdgeInsets.all(10),
+                          width: MediaQuery.of(context).size.width * 0.04,
+                          height: MediaQuery.of(context).size.height * 0.02,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: AssetImage(
+                                  "assets/png/grommet-icons_language.png"),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.all(5),
+                              height: MediaQuery.of(context).size.height * 0.03,
+                              child: DropdownButton(
+                                iconDisabledColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                iconEnabledColor:
+                                    Theme.of(context).colorScheme.secondary,
+                                icon: const Center(
+                                    child: Icon(Icons.arrow_drop_down)),
+                                // padding: const EdgeInsets.only(top: 10),
+                                underline: const SizedBox(),
+                                hint: Text(
+                                  dropvalue ?? "English",
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
+                                ),
+                                alignment: Alignment.topCenter,
+                                items: ['English', 'Hindi', 'Gujrati', 'Gambia']
+                                    .map((value) {
+                                  return DropdownMenuItem(
+                                    alignment: Alignment.center,
+                                    value: value,
+                                    child: Container(
+                                      color: Colors.amber,
+                                      child: Text(value),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    dropvalue = value;
+                                  });
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -353,11 +402,13 @@ List<Appointment> getAppointments({context, starttime, endtime, title}) {
 
   meetings.add(
     Appointment(
-        startTime: startTime,
-        endTime: endTime,
-        subject: title.toString(),
-        color: Theme.of(context).colorScheme.primary),
+      startTime: startTime,
+      endTime: endTime,
+      subject: title.toString(),
+      color: Theme.of(context).colorScheme.primary,
+    ),
   );
+
   return meetings;
 }
 

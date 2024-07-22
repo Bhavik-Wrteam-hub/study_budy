@@ -69,7 +69,7 @@ List<Map<String, String>> tpicCard = [
   },
   {
     "title": "Equation",
-    "subtitle": "30/30 Questions.",
+    "subtitle": "30/30 Questions",
     "percentage": "100%",
     "icon": "true",
     "progress": "1"

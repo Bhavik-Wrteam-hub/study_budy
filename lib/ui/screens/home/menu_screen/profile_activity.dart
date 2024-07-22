@@ -209,106 +209,106 @@ class LastMonthActivity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          //first row
-          Container(
-            margin: const EdgeInsets.all(10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Showing last month activity"),
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                  width: MediaQuery.of(context).size.width * 0.07,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Theme.of(context).colorScheme.secondary,
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0, 2),
-                            blurRadius: 3,
-                            spreadRadius: 1)
-                      ]),
-                  child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, "/homeactivity");
-                      },
-                      child: Image.asset("assets/png/Filter.png")),
-                )
-              ],
-            ),
-          ),
-          //list of the month activity
-          Container(
-            margin: const EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            child: ListView.separated(
-              itemCount: lastmonthactivity.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  height: MediaQuery.of(context).size.height * 0.09,
-                  width: MediaQuery.of(context).size.width * 0.09,
-                  decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      color: Theme.of(context).colorScheme.secondary,
-                      boxShadow: const [
-                        BoxShadow(
-                          offset: Offset(0, 3),
+    return Column(
+      children: [
+        //first row
+        Container(
+          margin: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text("Showing last month activity"),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.03,
+                width: MediaQuery.of(context).size.width * 0.07,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Theme.of(context).colorScheme.secondary,
+                    boxShadow: const [
+                      BoxShadow(
                           color: Colors.grey,
-                          blurRadius: 2,
-                          spreadRadius: 1,
-                        )
-                      ]),
-                  child: Container(
-                    margin: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(lastmonthactivity[index]["title"].toString()),
-                            Text(
-                              lastmonthactivity[index]["subtitle"].toString(),
-                              style: const TextStyle(color: Color(0xff9B9BA1)),
-                            )
-                          ],
+                          offset: Offset(0, 2),
+                          blurRadius: 3,
+                          spreadRadius: 1)
+                    ]),
+                child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, "/homeactivity");
+                    },
+                    child: Image.asset("assets/png/Filter.png")),
+              )
+            ],
+          ),
+        ),
+        //list of the month activity
+        Container(
+          //color: Colors.amber,
+          margin: const EdgeInsets.all(10),
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width,
+          child: ListView.separated(
+            itemCount: lastmonthactivity.length,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: const EdgeInsets.all(5),
+                height: MediaQuery.of(context).size.height * 0.09,
+                width: MediaQuery.of(context).size.width * 0.09,
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    color: Theme.of(context).colorScheme.secondary,
+                    boxShadow: const [
+                      BoxShadow(
+                        offset: Offset(0, 2),
+                        color: Colors.grey,
+                        blurRadius: 3,
+                        spreadRadius: 1,
+                      )
+                    ]),
+                child: Container(
+                  margin: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(lastmonthactivity[index]["title"].toString()),
+                          Text(
+                            lastmonthactivity[index]["subtitle"].toString(),
+                            style: const TextStyle(color: Color(0xff9B9BA1)),
+                          )
+                        ],
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                        width: MediaQuery.of(context).size.width * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          border: Border.all(color: const Color(0xffEAECF0)),
                         ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * 0.04,
-                          width: MediaQuery.of(context).size.width * 0.09,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
-                            border: Border.all(color: const Color(0xffEAECF0)),
-                          ),
-                          child: Image.asset(
-                            lastmonthactivity[index]["image"] == "green"
-                                ? "assets/png/Arrow_Up.png"
-                                : lastmonthactivity[index]["image"] == "red"
-                                    ? "assets/png/Arrow_Down.png"
-                                    : "assets/png/Medal.png",
-                          ),
-                        )
-                      ],
-                    ),
+                        child: Image.asset(
+                          lastmonthactivity[index]["image"] == "green"
+                              ? "assets/png/Arrow_Up.png"
+                              : lastmonthactivity[index]["image"] == "red"
+                                  ? "assets/png/Arrow_Down.png"
+                                  : "assets/png/Medal.png",
+                        ),
+                      )
+                    ],
                   ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                );
-              },
-            ),
-          )
-        ],
-      ),
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              );
+            },
+          ),
+        )
+      ],
     );
   }
 }
